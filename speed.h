@@ -37,11 +37,12 @@ enum STRINGS
 	TEXT_DOWN = 4,
 	TEXT_UP = 5,
 	SET_SPEED = 6,
-	CLEAR = 7
+	CLEAR = 7,
+    HEADLINE = 8
 };
 
 const char* strings[] = {"Can't get adapters list, enter manually",
 							"Speed adjustment",
 							"768", "512", "Download(kbit/s)",
-							"Upload(kbit/s)", "Set Speed", "Clear"};
-
+							"Upload(kbit/s)", "Set Speed", "Clear",
+                            "First run?: please setup:\n  you must add this line to visudo (sudo visudo):\n  YourUsername ALL=NOPASSWD:/sbin/wondershaper\n"};
