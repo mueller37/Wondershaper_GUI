@@ -24,7 +24,7 @@
 
 #include "speed.h"
 
-GtkWidget * txtDown, * txtUp;
+GtkWidget * txtDown, * txtUp, * txtHeadline;
 GtkWidget * cmbAdapters;
 GList * adapters = NULL;
 
@@ -62,7 +62,7 @@ void clear_speed(GtkWidget * widget, gpointer data)
 	char str[256];
 	sprintf(str, "%s %s %s", "sudo wondershaper", "clear", a);
 	g_print("%s\n",str);
-	system(str);
+	system(str);    
 }
 
 void set_speed(GtkWidget * widget, gpointer data)
@@ -86,11 +86,12 @@ void destroy(GtkWidget * widget, gpointer data)
 	gtk_main_quit();
 }
 
+
 void init_interface()
 {
 	GtkWidget * window;
 	GtkWidget * btnSet, * btnClear;
-	GtkWidget * hBox, * hBox2, * vBox;
+	GtkWidget * hBox0, * hBox, * hBox2, * vBox;
 	GtkWidget * lblDown, * lblUp;
 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -99,6 +100,8 @@ void init_interface()
 	g_signal_connect(window, "destroy", G_CALLBACK(destroy), NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(window), 5);
 	gtk_window_set_title(GTK_WINDOW(window), strings[TITLE]);
+
+
 
 	txtDown = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(txtDown), strings[INITIAL_DOWN]);
@@ -110,6 +113,7 @@ void init_interface()
 
 	lblUp = gtk_label_new(strings[TEXT_UP]);
 
+
 	btnSet = gtk_button_new_with_label(strings[SET_SPEED]);
 	g_signal_connect(btnSet, "clicked", G_CALLBACK(set_speed), NULL);
 
@@ -119,15 +123,25 @@ void init_interface()
 	cmbAdapters = gtk_combo_new();
 	gtk_combo_set_popdown_strings(GTK_COMBO(cmbAdapters), adapters);
 
+   
+    txtHeadline = gtk_label_new (strings[HEADLINE]);
+    gtk_widget_modify_font(txtHeadline, pango_font_description_from_string("Tahoma 10"));
+   
+
+    hBox0 = gtk_hbox_new(TRUE, 20);
+    gtk_container_add( GTK_CONTAINER(hBox0),txtHeadline);
+
 	hBox = gtk_hbox_new(TRUE, 10);
 	gtk_container_add(GTK_CONTAINER(hBox), txtDown);
 	gtk_container_add(GTK_CONTAINER(hBox), txtUp);
+    
 
 	hBox2 = gtk_hbox_new(TRUE, 10);
 	gtk_container_add(GTK_CONTAINER(hBox2), lblDown);
 	gtk_container_add(GTK_CONTAINER(hBox2), lblUp);
 
 	vBox = gtk_vbox_new(FALSE, 5);
+	gtk_container_add(GTK_CONTAINER(vBox), hBox0);
 	gtk_container_add(GTK_CONTAINER(vBox), cmbAdapters);
 	gtk_container_add(GTK_CONTAINER(vBox), hBox2);
 	gtk_container_add(GTK_CONTAINER(vBox), hBox);
@@ -137,10 +151,12 @@ void init_interface()
 	gtk_container_add(GTK_CONTAINER(window), vBox);
 
 	gtk_widget_show(cmbAdapters);
+    gtk_widget_show(txtHeadline);
 	gtk_widget_show(txtDown);
 	gtk_widget_show(txtUp);
 	gtk_widget_show(lblUp);
 	gtk_widget_show(lblDown);
+	gtk_widget_show(hBox0);
 	gtk_widget_show(hBox2);
 	gtk_widget_show(hBox);
 	gtk_widget_show(vBox);
@@ -158,4 +174,3 @@ int main(int argc, char ** argv)
 	gtk_main();
 	return 0;
 }
-
