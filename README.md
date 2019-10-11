@@ -12,8 +12,6 @@ Wondershaper must be run-able, without asking for password:  Please run `sudo vi
 ## Compile:
 requirement: libgtk2.0-dev
 
-cd Wondershaper_GUI
-
-make
-
+cd Wondershaper_GUI \
+make \
 ./speed
