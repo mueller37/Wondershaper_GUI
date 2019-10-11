@@ -5,8 +5,7 @@ install: compile
 	cp speed /usr/bin/speed
 	chmod +x /usr/bin/speed
 	echo "[Desktop Entry]\n\
-	Exec=gksu /usr/bin/speed\n\
-	Icon=/usr/share/pixmaps/gksu.png\n\
+	Exec=/usr/bin/speed\n\
 	Terminal=false\n\
 	Type=Application\n\
 	Categories=Network;Settings;\n\
