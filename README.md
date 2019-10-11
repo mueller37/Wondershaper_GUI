@@ -4,7 +4,7 @@ Simple GUI for wondershaper
 ![screenshot](screenshot.png)
 
 ## requriements:
-Ubuntu: sudo , gtk2 (libgtk2.0-0), wondershaper
+Ubuntu: sudo , libgtk2.0, wondershaper
 
 ## Important manual setup:
 Wondershaper must be run-able, without asking for password:  Please run `sudo visudo` and add this line `YourUsername ALL=NOPASSWD:/sbin/wondershaper`
